@@ -1,31 +1,31 @@
 {
     "filmes": [
         {
-            "id": "",
-            "titulo": "",
-            "sinopse": "",
-            "ano": "",
-            "direcao": "",
-            "generos": [""],
-            "duracao": 0
+            "id": "ke8X3SE0XE8",
+            "titulo": "Mulheres Rio Acima",
+            "sinopse": "O documentário que traz para a tela histórias de mulheres militantes de Ribeirão Preto, como a da enfermeira e uma das líderes das Forças Armadas de Libertação Nacional, Áurea Moretti, que foi perseguida e torturada durante a ditadura militar; Dilma Bicalho, outra militante da época da ditadura; Sílvia Diogo, da ONG Casa da Mulher e Regina Brito, da ONG Vitória Régia. Produzido durante o encontro de artes “Mulheres Rio Acima”, realizado em maio pelo coletivo, o filme também mostra a cobertura do evento, que tem como objetivo reunir e divulgar a arte feminista da cidade, com imagens das apresentações e entrevistas com as artistas e organizadoras do encontro.",
+            "ano": "2017",
+            "direcao": "Milena Maganin, Raíza Ferreira",
+            "generos": ["Documentário"],
+            "duracao": 2820
         },
         {
-            "id": "",
-            "titulo": "",
-            "sinopse": "",
-            "ano": "",
-            "direcao": "",
-            "generos": [""],
-            "duracao": 0
+            "id": "kjakln0AQlA",
+            "titulo": "Voluntários do Sertão",
+            "sinopse": "O documentário acompanha mais de 300 voluntários da área da saúde, assistência social e alimentação em um mutirão de mais de 46 mil atendimentos na cidade de Irecê, sertão da Bahia.",
+            "ano": "2017",
+            "direcao": "Milena Maganin, Raíza Ferreira, Flávia Martelli",
+            "generos": ["Documentário"],
+            "duracao": 780
         },
         {
-            "id": "",
-            "titulo": "",
-            "sinopse": "",
-            "ano": "",
-            "direcao": "",
-            "generos": [""],
-            "duracao": 0
+            "id": "DrzWKWeg_PI",
+            "titulo": "Ouvidores de Vozes",
+            "sinopse": "Isabel, Reginaldo e Marlene escutam vozes e têm seu dia a dia retratado no documentário Ouvidores de Vozes. Vencedor do Pitching Doc Futura de 2016, o filme coloca em discussão o tratamento psiquiátrico no sistema de saúde do país através da trajetória de seus personagens, passando desde o diagnóstico médico, até por crenças religiosas e isolamento social.",
+            "ano": "2018",
+            "direcao": "Bruno Tarpani",
+            "generos": ["Documentário"],
+            "duracao": 3120
         }
     ]
 }
