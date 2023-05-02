@@ -12,6 +12,7 @@ module.exports = {
       cod: {
         type: Sequelize.STRING,
         allowNull: false,
+        primaryKey: true,
       },
       titulo: {
         type: Sequelize.STRING,

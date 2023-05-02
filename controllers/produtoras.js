@@ -109,10 +109,26 @@ const apagaProdutora = async (req, res) => {
   }
 };
 
+const login = async (req, res) => {
+  const email = req.body.email;
+  const senha = req.body.senha;
+
+  const data = await models.Produtora.findOne({ email: email, senha: senha });
+
+  const produtora = data.dataValues;
+
+  if (produtora) {
+    return res.status(200).json(produtora);
+  }
+
+  return res.status(404).send(new Error("Not Found"));
+};
+
 module.exports = {
   cadastraProdutora,
   listaProdutoras,
   buscaProdutoraId,
   atualizaProdutora,
   apagaProdutora,
+  login,
 };

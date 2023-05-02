@@ -16,7 +16,7 @@ router.get("/filmes", filmesController.listaFilmes);
  * Adicionar filme
  *
  * body: {
- *  id: [código do video do Youtube],
+ *  cod: [código do video do Youtube],
  *  titulo: [título do filme],
  *  sinopse: [sinopse do filme],
  *  ano: [ano de lançamento do filme],
@@ -57,6 +57,7 @@ router.get("/produtoras", produtorasController.listaProdutoras);
 router.get("/produtora/:produtoraId", produtorasController.buscaProdutoraId);
 router.put("/produtora/:produtoraId", produtorasController.atualizaProdutora);
 router.delete("/produtora/:produtoraId", produtorasController.apagaProdutora);
+router.delete("/produtora/login", produtorasController.login);
 
 router.post("/usuario", usuariosController.cadastraUsuario);
 router.get("/usuarios", usuariosController.listaUsuarios);
@@ -64,5 +65,6 @@ router.get("/usuario/:usuarioId", usuariosController.buscaUsuarioId);
 router.put("/usuario/:usuarioId", usuariosController.atualizaUsuario);
 router.put("/usuario/favorito/:usuarioId", usuariosController.adicionaFavorito);
 router.delete("/usuario/:usuarioId", usuariosController.apagaUsuario);
+router.delete("/usuario/login", usuariosController.login);
 
 module.exports = router;

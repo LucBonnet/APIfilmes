@@ -3,6 +3,12 @@ const models = require("../database/models");
 
 const cadastraFilme = async (req, res) => {
   try {
+    const data = await models.Filme.findOne({ where: { cod: req.body.cod } });
+
+    if (data) {
+      return res.status(400).json();
+    }
+
     const filme = await models.Filme.create(req.body);
     return res.status(201).json(filme);
   } catch (error) {
@@ -45,7 +51,7 @@ const listaFilmes = async (req, res) => {
 const buscaFilmeById = async (req, res) => {
   const filmeId = req.params.filmeId;
 
-  const data = await models.Filme.findOne({ cod: filmeId });
+  const data = await models.Filme.findOne({ where: { cod: filmeId } });
 
   if (!data) {
     return res.status(404).json("Not Found");
@@ -70,7 +76,9 @@ const buscaFilmeById = async (req, res) => {
 const buscaFilmesPelaProdutora = async (req, res) => {
   const id_produtora = req.params.id_produtora;
 
-  const data = await models.Filme.findAll({ id_produtora: id_produtora });
+  const data = await models.Filme.findAll({
+    where: { id_produtora: id_produtora },
+  });
 
   const filmes = data.map((filme) => {
     const values = filme.dataValues;

@@ -144,6 +144,21 @@ const adicionaFavorito = async (req, res) => {
   }
 };
 
+const login = async (req, res) => {
+  const email = req.body.email;
+  const senha = req.body.senha;
+
+  const data = await models.Usuario.findOne({ email: email, senha: senha });
+
+  const usuario = data.dataValues;
+
+  if (usuario) {
+    return res.status(200).json(usuario);
+  }
+
+  return res.status(404).send(new Error("Not Found"));
+};
+
 module.exports = {
   cadastraUsuario,
   listaUsuarios,
@@ -151,4 +166,5 @@ module.exports = {
   atualizaUsuario,
   apagaUsuario,
   adicionaFavorito,
+  login,
 };
