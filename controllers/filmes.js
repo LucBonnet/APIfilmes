@@ -3,13 +3,24 @@ const models = require("../database/models");
 
 const cadastraFilme = async (req, res) => {
   try {
-    const data = await models.Filme.findOne({ where: { cod: req.body.cod } });
+    const data = await models.Filme.findOne({ where: { cod: req.body.id } });
 
     if (data) {
       return res.status(400).json();
     }
 
-    const filme = await models.Filme.create(req.body);
+    const nFilme = {
+      cod: req.body.id,
+      titulo: req.body.titulo,
+      sinopse: req.body.sinopse,
+      ano: req.body.ano,
+      direcao: req.body.direcao,
+      generos: req.body.generos,
+      duracao: req.body.duracao,
+      id_produtora: req.body.id_produtora,
+    };
+
+    const filme = await models.Filme.create(nFilme);
     return res.status(201).json(filme);
   } catch (error) {
     const filmes_obj = Object.keys(models.Filme.rawAttributes)
@@ -27,7 +38,7 @@ const cadastraFilme = async (req, res) => {
         expected_json: filmes_obj,
       });
     } else {
-      throw new Error(error);
+      return res.status(400).json({});
     }
   }
 };
@@ -39,6 +50,7 @@ const listaFilmes = async (req, res) => {
     const values = filme.dataValues;
     values.id = values.cod;
     delete values.cod;
+    filme.direcao = filme.direcao.join(", ");
     return {
       ...values,
       url: `https://www.youtube.com/watch?v=${filme.cod}`,
@@ -60,6 +72,8 @@ const buscaFilmeById = async (req, res) => {
   const values = data.dataValues;
   values.id = values.cod;
   delete values.cod;
+
+  values.direcao = values.direcao.join(", ");
 
   const filme = {
     ...values,

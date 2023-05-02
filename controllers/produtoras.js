@@ -39,15 +39,17 @@ const listaProdutoras = async (req, res) => {
 const buscaProdutoraId = async (req, res) => {
   const produtoraId = req.params.produtoraId;
 
-  const data = await models.Produtora.findOne({ id: produtoraId });
+  const data = await models.Produtora.findOne({ where: { id: produtoraId } });
+
+  if (!data) {
+    return res.status(404).send(new Error("Not Found"));
+  }
 
   const produtora = data.dataValues;
 
   if (produtora) {
     return res.status(200).json(produtora);
   }
-
-  return res.status(404).send(new Error("Not Found"));
 };
 
 const atualizaProdutora = async (req, res) => {
@@ -113,7 +115,13 @@ const login = async (req, res) => {
   const email = req.body.email;
   const senha = req.body.senha;
 
-  const data = await models.Produtora.findOne({ email: email, senha: senha });
+  const data = await models.Produtora.findOne({
+    where: { email: email, senha: senha },
+  });
+
+  if (!data) {
+    return res.status(404).send(new Error("Not Found"));
+  }
 
   const produtora = data.dataValues;
 

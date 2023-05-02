@@ -41,6 +41,13 @@ module.exports = {
       id_produtora: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: {
+            tableName: "Produtoras",
+            schema: "public",
+          },
+          key: "id",
+        },
       },
       createdAt: {
         allowNull: false,
