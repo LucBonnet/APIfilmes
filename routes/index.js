@@ -15,13 +15,12 @@ router.get("/filmes", filmesController.listaFilmes);
  * Adicionar filme
  *
  * body: {
- *  id: [código do video do Youtube],
+ *  link: [link do video do Youtube],
  *  titulo: [título do filme],
  *  sinopse: [sinopse do filme],
  *  ano: [ano de lançamento do filme],
  *  direcao: [array com o nome dos diretores e diretoras do filme],
  *  generos: [array com os gêneros do filme],
- *  duracao: [tempo de duração em segundos]
  *  id_produtora: [id da produtora que enviou o filme]
  * }
  */

@@ -1,24 +1,32 @@
 // const db = require("../database/db.json");
+const ytsr = require("ytsr");
 const models = require("../database/models");
 
 const cadastraFilme = async (req, res) => {
   try {
-    const data = await models.Filme.findOne({ where: { cod: req.body.id } });
+    const video = await ytsr(req.body.link);
+    const cod = video.items[0].id;
+    const [s, m, h] = video.items[0].duration.split(":").map((valor) => Number(valor)).reverse();
+    const duracao = (h ? h : 0) * 60 * 60 + m * 60 + s;
+
+    const data = await models.Filme.findOne({ where: { cod: cod } });
 
     if (data) {
-      return res.status(400).json();
+      return res.status(400).json("Filme já cadastrado");
     }
 
     const nFilme = {
-      cod: req.body.id,
+      cod: cod,
       titulo: req.body.titulo,
       sinopse: req.body.sinopse,
       ano: req.body.ano,
       direcao: req.body.direcao,
       generos: req.body.generos,
-      duracao: req.body.duracao,
+      duracao: duracao,
       id_produtora: req.body.id_produtora,
     };
+
+    console.log(nFilme);
 
     const filme = await models.Filme.create(nFilme);
     return res.status(201).json(filme);
@@ -116,6 +124,12 @@ const atualizaFilme = async (req, res) => {
   const filmeId = req.params.filmeId;
 
   try {
+    const atributos = ["cod", "id", "duracao"];
+    if(Object.keys(req.body).find((elemento) => atributos.includes(elemento))) {
+      console.log("sadsad")
+      return res.status(400).json({})
+    }
+
     const filme = await models.Filme.update(
       { ...req.body },
       { where: { cod: filmeId } }
