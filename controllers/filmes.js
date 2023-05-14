@@ -4,10 +4,23 @@ const models = require("../database/models");
 
 const cadastraFilme = async (req, res) => {
   try {
-    const video = await ytsr(req.body.link);
-    const cod = video.items[0].id;
-    const [s, m, h] = video.items[0].duration.split(":").map((valor) => Number(valor)).reverse();
-    const duracao = (h ? h : 0) * 60 * 60 + m * 60 + s;
+    const link = req.body.link;
+    let video = await ytsr(link);
+    
+    let cod = link.split("?v=")[1].split("&")[0];
+    if(video.items.length == 0) {
+      video = await ytsr(cod);
+    }
+
+    let duracao = req.body?.duracao ? req.body.duracao : 0;
+    console.log(duracao)
+    if(video.items.length > 0) {
+      cod = video.items[0].id;
+      if(!duracao) {
+        const [s, m, h] = video.items[0].duration.split(":").map((valor) => Number(valor)).reverse();
+        duracao = (h ? h : 0) * 60 * 60 + m * 60 + s;
+      }
+    }
 
     const data = await models.Filme.findOne({ where: { cod: cod } });
 
@@ -25,8 +38,6 @@ const cadastraFilme = async (req, res) => {
       duracao: duracao,
       id_produtora: req.body.id_produtora,
     };
-
-    console.log(nFilme);
 
     const filme = await models.Filme.create(nFilme);
     return res.status(201).json(filme);
